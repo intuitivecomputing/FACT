@@ -1,0 +1,11 @@
+<launch>
+  <arg name="my_name" default="person1" />
+
+  <group ns="$(arg my_name)" >
+  <!-- Launch audi capture -->
+  <include file="$(find audio_common)/audio_capture/launch/capture.launch">
+    <arg name="device" arg_name="hw:2,0"/>
+  </include>
+  
+  </group>
+</launch>

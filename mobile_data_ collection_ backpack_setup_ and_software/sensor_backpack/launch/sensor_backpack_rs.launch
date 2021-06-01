@@ -1,0 +1,30 @@
+<launch>
+  <arg name="my_name" default="person1" />
+  <arg name="rs_name" default="rs" />
+  <arg name="rs" default="true" />
+  <arg name="record" default="true" />
+  <arg name="infra" default="true" />
+
+  <group ns="$(arg my_name)" >
+
+  <!-- Launch IntelRealsense d435i -->
+  <group if="$(arg rs)" >
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+    <arg name="camera" value="$(arg rs_name)"/>
+    <arg name="tf_prefix" value="$(arg my_name)/$(arg rs_name)"/>
+    <!-- <arg name="filters" value="pointcloud"/> -->
+    <arg name="initial_reset" value="true"/>
+    <arg name="depth_fps" value="15"/>
+    <arg name="infra_fps" value="15"/>
+    <arg name="color_fps" value="15"/>
+    <arg name="enable_infra1" value="$(arg infra)"/>
+    <arg name="enable_infra2" value="$(arg infra)"/>
+  </include>
+  </group>
+
+  <group if="$(arg record)" >
+  <node pkg="rosbag" type="record" name="rosbag_record" args="record -b 32768 -o /home/icl/logs/$(arg my_name) /tf /tf_static /$(arg my_name)/$(arg rs_name)/accel/imu_info /$(arg my_name)/$(arg rs_name)/accel/sample /$(arg my_name)/$(arg rs_name)/color/camera_info /$(arg my_name)/$(arg rs_name)/color/image_raw /$(arg my_name)/$(arg rs_name)/depth/camera_info /$(arg my_name)/$(arg rs_name)/depth/image_rect_raw /$(arg my_name)/$(arg rs_name)/gyro/imu_info /$(arg my_name)/$(arg rs_name)/gyro/sample /$(arg my_name)/$(arg rs_name)/infra1/camera_info /$(arg my_name)/$(arg rs_name)/infra1/image_rect_raw /$(arg my_name)/$(arg rs_name)/infra2/camera_info /$(arg my_name)/$(arg rs_name)/infra2/image_rect_raw" />
+  </group>
+  
+  </group>
+</launch>

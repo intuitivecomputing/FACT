@@ -1,0 +1,31 @@
+<launch>
+  <arg name="study_name" default="study" />
+
+  <!-- republish compressed image topics for person1 and person2 -->
+
+  <include file="$(find sensor_backpack)/launch/record_person.launch" >
+    <arg name="person_name" value="person1" />
+  </include>
+
+  <include file="$(find sensor_backpack)/launch/record_person.launch" >
+    <arg name="person_name" value="person2" />
+  </include>
+
+  <!-- bag file -->
+  <node pkg="rosbag" type="record" name="rosbag_record" args="record -b 32768 -o /home/icl/logs/$(arg study_name) 
+  /tf /tf_static 
+  /person1/body_cam/camera_info /person1/body_cam/image_uncompressed 
+  /person1/head_cam/accel/imu_info /person1/head_cam/accel/sample 
+  /person1/head_cam/color/camera_info /person1/head_cam/color/image_uncompressed /person1/head_cam/depth/camera_info 
+  /person1/head_cam/depth/image_rect_uncompressed /person1/gyro/imu_info /person1/gyro/sample 
+  /person1/myo_raw/myo_arm /person1/myo_raw/myo_emg /person1/myo_raw/myo_gest /person1/myo_raw/myo_gest_str /person1/myo_raw/myo_imu 
+  /person1/myo_raw/myo_ori /person1/myo_raw/myo_ori_deg/ /person1/myo_raw/pose /person2/body_cam/camera_info 
+  /person2/body_cam/image_uncompressed /person2/head_cam/accel/imu_info /person2/head_cam/accel/sample 
+  /person2/head_cam/color/camera_info /person2/head_cam/color/image_uncompressed /person2/head_cam/depth/camera_info 
+  /person2/head_cam/depth/image_rect_uncompressed /person2/gyro/imu_info /person2/gyro/sample /person2/myo_raw/myo_arm 
+  /person2/myo_raw/myo_emg /person2/myo_raw/myo_gest /person2/myo_raw/myo_gest_str /person2/myo_raw/myo_imu /person2/myo_raw/myo_ori 
+  /person2/myo_raw/myo_ori_deg/ /person2/myo_raw/pose
+  /person1/audio/audio/ /person2/audio/audio"
+/>
+
+</launch>

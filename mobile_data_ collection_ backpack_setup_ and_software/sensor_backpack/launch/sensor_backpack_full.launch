@@ -1,0 +1,59 @@
+<launch>
+  <arg name="my_name" default="person1" />
+  <arg name="myo" default="false" />
+  <arg name="audio" default="false" />
+  <arg name="webcam" default="true" />
+  <arg name="webcam_dev" default="video1" />
+  <arg name="webcam_name" default="body_cam" />
+  <arg name="rs" default="true" />
+  <arg name="rs_name" default="head_cam" />
+
+  <group ns="$(arg my_name)" >
+
+   <!-- Launch Body webcam -->
+  <group if="$(arg webcam)" >
+  <node name="$(arg webcam_name)" pkg="usb_cam" type="usb_cam_node" output="screen">
+    <param name="camera_name" value="$(arg webcam_name)" />
+    <param name="camera_frame_id" value="$(arg webcam_name)" />
+    <param name="video_device" value="/dev/$(arg webcam_dev)" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="framerate" value="15" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap" />
+  </node>
+  </group>
+
+  <!-- Launch IntelRealsense d435i -->
+  <group if="$(arg rs)" >
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+    <arg name="camera" value="$(arg rs_name)"/>
+    <arg name="tf_prefix" value="$(arg my_name)/$(arg rs_name)"/>
+    <!-- <arg name="filters" value="pointcloud"/> -->
+    <arg name="initial_reset" value="true"/>
+    <arg name="depth_fps" value="15"/>
+    <arg name="infra_fps" value="15"/>
+    <arg name="color_fps" value="15"/>
+    <arg name="enable_infra1" value="false"/>
+    <arg name="enable_infra2" value="false"/>
+  </include>
+  </group>
+
+  <!-- Launch myo band -->
+  <group if="$(arg myo)" >
+  <include file="$(find ros_myo)/launch/myo.launch">
+    <arg name="rviz" value="false" />
+    <arg name="output" value="log" />
+  </include>
+  </group>
+
+  <!-- Launch audio -->
+  <group if="$(arg audio)" >
+  <include file="(find audio_common)/audio_capture/launch/capture.launch">
+    <arg name="device" arg_name="hw:2,0"/>
+  </include>
+  </group>
+  
+  </group>
+</launch>

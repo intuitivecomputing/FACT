@@ -1,0 +1,11 @@
+<launch>
+  <arg name="my_name" default="person1" />
+
+  <group ns="$(arg my_name)" >
+  <!-- Launch myo band -->
+  <include file="$(find ros_myo)/launch/myo.launch">
+    <arg name="rviz" value="false" />
+  </include>
+  
+  </group>
+</launch>

@@ -1,0 +1,10 @@
+<launch>
+  <arg name="person_name" default="person1" />
+
+  <node name="$(arg person_name)_repub_body_cam" type="republish" pkg="image_transport" output="screen" args="compressed in:=/$(arg person_name)/body_cam/image_raw out:=/$(arg person_name)/body_cam/image_uncompressed" />
+
+  <node name="$(arg person_name)_repub_head_cam_color" type="republish" pkg="image_transport" output="screen" args="compressed in:=/$(arg person_name)/head_cam/color/image_raw out:=/$(arg person_name)/head_cam/color/image_uncompressed" />
+
+  <node name="$(arg person_name)_repub_head_cam_depth" type="republish" pkg="image_transport" output="screen" args="compressed in:=/$(arg person_name)/head_cam/depth/image_rect_raw out:=/$(arg person_name)/head_cam/depth/image_rect_uncompressed" />
+
+</launch>
