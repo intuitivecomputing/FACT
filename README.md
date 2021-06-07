@@ -4,5 +4,5 @@ This repository accompanies the paper *FACT: A Full-body Ad-hoc Collaboration Te
 
 ## Contents
 - /mobile_data_collection_backpack_setup_and_software/Mobile Data Collection Backpack Setup Information.pdf: Parts list and setup instructions for mobile data collection backpack
-- /mobile_data_collection_backpack_setup_and_software/sensor_backpack: Software for running mobile data collection
+- /mobile_data_collection_backpack_setup_and_software/sensor_backpack: ROS package for running mobile data collection
 - /pvc_bunk_bed_setup: Diagram and connector information for setting up PVC bunk bed
