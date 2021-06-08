@@ -15,11 +15,11 @@
 * Zip Ties 
 
 ## Mobile Data Collection Backpack Setup Instructions
-* Follow [Jetson TX2 Setup Instructions](#jetson-tx2-setup-instructions). Once all of the software is installed, shut down the system, remove everything but the USB hub, and mount the TX2 against the back of the backpack with zip ties.
+* Follow [Jetson TX2 Setup Instructions](#jtx2). Once all of the software is installed, shut down the system, remove everything but the USB hub, and mount the TX2 against the back of the backpack with zip ties.
 * Place the battery pack in the side pocket of the backpack and connect the 12V output to the TX2 and the 5V output to the USB hub.
 * Secure the USB hub and any loose cables with zip ties. 
 
-## Jetson TX2 Setup Instructions
+## <a name="jtx2"></a>Jetson TX2 Setup Instructions
 * Connect the WiFi antennas and the USB hub to the TX2.
 * Connect a monitor to the HDMI port on the TX2. Connect a keyboard and mouse to the TX2.
 * Attach the power adapter to the barrel jack on the TX2 and press the power button (first button from the center) to boot up the TX2.
@@ -48,9 +48,44 @@
 
 * Other setup
     - Add the username you specified earlier to the dialout group.
-        - sudo usermod -a -G dialout [username]
+        - _sudo usermod -a -G dialout [username]_
 
     - Create logs directory (bagfiles will automatically be created there).
-        - mkdir ~/logs
+        - _mkdir ~/logs_
 
-_Instructions about software installation to come - please see "Mobile Data Collection Backpack Setup Information" for full instructions._
+* Install software.
+    - Git
+        - _sudo apt-get install git_
+       
+    - ROS Melodic
+        - Follow [these instructions](http://wiki.ros.org/melodic/Installation/Ubuntu) to install ROS Melodic.
+        - After installing ROS Melodic, navigate to home directory and create a catkin workspace, e.g. _mkdir -p ~/catkin_ws/src; cd ~/catkin_ws_
+        - _catkin_make_
+
+    - ROS usb_cam Package
+        - _sudo apt-get install ros-melodic-usb-cam_
+
+    - RealSense SDK
+        - Follow [these instructions](https://github.com/IntelRealSense/librealsense/blob/development/doc/installation_jetson.md) to install RealSense SDK. 
+
+    - RealSense ROS Interface
+        - Install ROS Dynamic Reconfigure
+            - _sudo apt-get install ros-melodic-ddynamic-reconfigure_
+            - Navigate to _[your catkin workspace]/src_ and follow the instructions [here](https://github.com/IntelRealSense/realsense-ros).
+
+    - Myo ROS Interface
+        - Navigate to _[your catkin workspace]/src_ and clone [this repo](https://github.com/intuitivecomputing/ros_myo).
+
+    - Sensor Backpack
+        - Copy [the sensor backpack package](https://github.com/intuitivecomputing/FACT/tree/main/mobile_data_collection_backpack_setup_and_software/sensor_backpack) into _[your catkin workspace]/src_. 
+
+* Build all of the ROS packages.
+    - _cd _~/[your catkin workspace]; catkin_make; source devel/setup.bash_
+
+* Test whether the RealSense camera software setup works.
+    - Connect the RealSense camera, USB webcam, and Myo Band bluetooth receiver to the USB hub.
+    - From the command line, run _realsense-viewer_ (using connected monitor).
+    - Verify that the RealSense camera shows up with USB3 input (make sure to keep the RealSense on the same port).
+    - Perform any necessary firmware upgrades.
+    - Verify that the data streams work (see README in [the sensor backpack package](https://github.com/intuitivecomputing/FACT/tree/main/mobile_data_collection_backpack_setup_and_software/sensor_backpack). Close the data streams and exit.
+
