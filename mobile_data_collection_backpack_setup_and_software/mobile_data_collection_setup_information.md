@@ -11,7 +11,7 @@
 * [5V USB-to-Barrel-Jack Cable](https://www.amazon.com/CCYC-Barrel-Wireless-Router-Speakers/dp/B079K2DS3H)
 * [Chest and Head Mounts](https://www.amazon.com/VVHOOY-Universal-Compatible-Crosstour-Accessories/dp/B07L4T25JY)
 * [Camera Screw Adapters](https://www.amazon.com/Sametop-Universal-Conversion-Adapter-Compatible/dp/B06ZYKXYQK)
-* Thalmic Labs Myo Band (Discontinued as of 2018)
+* Thalmic Labs Myo Band (Discontinued as of 2018): Ignore instructions below related to Myo if you are not using the Myo band for data collection. Launch files on [the sensor backpack package](https://github.com/intuitivecomputing/FACT/tree/main/mobile_data_collection_backpack_setup_and_software/sensor_backpack) may need to be modified to remove Myo-related commands if you are not using the Myo band. 
 * Zip Ties 
 
 ## Mobile Data Collection Backpack Setup Instructions
