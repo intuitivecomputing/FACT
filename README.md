@@ -6,3 +6,14 @@ This repository accompanies the paper *FACT: A Full-body Ad-hoc Collaboration Te
 - [/mobile_data_collection_backpack_setup_and_software/Mobile Data Collection Backpack Setup Information.md](https://github.com/intuitivecomputing/FACT/blob/main/mobile_data_collection_backpack_setup_and_software/mobile_data_collection_setup_information.md): Parts list and setup instructions for mobile data collection backpack
 - [/mobile_data_collection_backpack_setup_and_software/sensor_backpack](https://github.com/intuitivecomputing/FACT/tree/main/mobile_data_collection_backpack_setup_and_software/sensor_backpack): ROS package for running mobile data collection
 - [/pvc_bunk_bed_setup](https://github.com/intuitivecomputing/FACT/tree/main/pvc_bunk_bed_setup): Diagram and connector information for setting up PVC bunk bed
+
+## BibTeX
+If you use FACT in a scientific publication, please cite our work:
+```
+@article{ajaykumar2021fact,
+  title={FACT: A Full-body Ad-hoc Collaboration Testbed for Modeling Complex Teamwork},
+  author={Ajaykumar, Gopika and Mao, Annie and Brown, Jeremy and Huang, Chien-Ming},
+  journal={arXiv preprint arXiv:2106.03290},
+  year={2021}
+}
+```
